@@ -1,0 +1,31 @@
+﻿@model NotifyModel
+
+
+<div class="container">
+    <div class="col-md-4">
+        <input asp-for="Title" class="form-control" />
+        <input asp-for="Url" class="form-control mt-3" />
+        <a onclick="send()" class="btn btn-success mt-3">Send Notification</a>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+        function send()
+        {
+            var data = {
+                "Title": $('#Title').val(),
+                "Url": $('#Url').val(),
+            };
+
+            $.post('/home/SendNotify', data, function (result)
+            {
+                if (result)
+                {
+                    alert("notification send");
+                }
+            })
+        }
+    </script>
+}
